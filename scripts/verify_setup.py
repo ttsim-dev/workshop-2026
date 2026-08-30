@@ -42,13 +42,29 @@ def main() -> int:
     grundsicherung_für_erwerbsfähige.Couple1Child(policy_date_str="2023-07-01")
     print("OK    personas available")
 
-    soep_data = ROOT / "soep-preparation" / "data" / "V41"
-    n_dta = len(list(soep_data.glob("*.dta"))) if soep_data.is_dir() else 0
-    if n_dta:
-        print(f"OK    SOEP-Core v41 raw files found ({n_dta} .dta)")
-    else:
+    from soep_preparation.config import DATA_ROOT, SOEP_VERSION, SRC
+    from soep_preparation.utilities.general import get_script_names
+
+    # soep-preparation reads one raw .dta per cleaning module, named after it.
+    # Whatever else the directory holds is not used, so do not look at it.
+    soep_data = DATA_ROOT / SOEP_VERSION
+    location = soep_data.relative_to(ROOT)
+    modules = sorted(get_script_names(SRC / "clean_modules"))
+    missing = [name for name in modules if not (soep_data / f"{name}.dta").exists()]
+    if not missing:
         print(
-            f"NOTE  no SOEP-Core v41 files in {soep_data.relative_to(ROOT)}/ yet.\n"
+            f"OK    SOEP-Core {SOEP_VERSION} raw files found for every cleaning module"
+        )
+    elif len(missing) == len(modules):
+        print(
+            f"NOTE  no SOEP-Core {SOEP_VERSION} raw files in {location}/ yet.\n"
+            "      Needed for Friday's session only."
+        )
+    else:
+        listed = "\n".join(f"        {name}.dta" for name in missing)
+        print(
+            f"NOTE  {location}/ has no raw file for these cleaning "
+            f"modules:\n{listed}\n"
             "      Needed for Friday's session only."
         )
 
