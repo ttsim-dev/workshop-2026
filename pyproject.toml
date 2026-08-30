@@ -1,0 +1,35 @@
+[project]
+name = "gettsim-workshop-2026"
+version = "0.1.0"
+description = "Hands-on material for the GETTSIM Workshop 2026, Bonn, 3-4 September 2026."
+requires-python = ">=3.14"
+
+[tool.pixi.workspace]
+channels = [ "conda-forge" ]
+platforms = [ "linux-64", "osx-64", "osx-arm64", "win-64" ]
+
+[tool.pixi.dependencies]
+python = "~=3.14.0"
+deepdiff = "*"
+scikit-learn = ">=1.9.0,<2"
+pyarrow = ">=21"
+ipykernel = "*"
+jupyterlab = "*"
+matplotlib = "*"
+plotly = "*"
+pygraphviz = "*"
+
+[tool.pixi.pypi-dependencies]
+jaxtyping = "*"
+dags = { git = "https://github.com/OpenSourceEconomics/dags.git", branch = "main" }
+ttsim-backend = { path = "ttsim", editable = true }
+gettsim = { path = "gettsim", editable = true }
+gettsim-personas = { path = "gettsim-personas", editable = true }
+soep-preparation = { path = "soep-preparation", editable = true }
+nbmake = "*"
+pytest = "*"
+
+[tool.pixi.tasks]
+jupyter = { cmd = "jupyter lab", description = "Open the workshop notebooks." }
+verify = { cmd = "python scripts/verify_setup.py", description = "Check that your setup works." }
+test-notebooks = { cmd = "pytest --nbmake notebooks/01_policy_environment.ipynb notebooks/02_personas.ipynb", description = "Execute notebooks 01 and 02 and fail on any error." }

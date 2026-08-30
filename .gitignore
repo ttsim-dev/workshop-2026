@@ -1,0 +1,7 @@
+.pixi/
+bld/
+*.pyc
+__pycache__/
+.ipynb_checkpoints/
+.pytest_cache/
+soep-preparation/data/V41/
