@@ -31,5 +31,7 @@ pytest = "*"
 
 [tool.pixi.tasks]
 jupyter = { cmd = "jupyter lab", description = "Open the workshop notebooks." }
-verify = { cmd = "python scripts/verify_setup.py", description = "Check that your setup works." }
+# -W ignore: beartype emits a noisy decoration warning on import that would bury
+# the check output. Drop the flag if you need to see warnings.
+verify = { cmd = "python -W ignore scripts/verify_setup.py", description = "Check that your setup works." }
 test-notebooks = { cmd = "pytest --nbmake notebooks/01_policy_environment.ipynb notebooks/02_personas.ipynb", description = "Execute notebooks 01 and 02 and fail on any error." }
