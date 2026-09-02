@@ -45,7 +45,7 @@ Same reform. Now on people who exist.
 
 ---
 
-# What soep-preparation tries to solve
+# What soep-preparation Tries To Solve
 
 - Everyone is using SOEP data, but every researcher cleans it themselves
     - Setting correct variable data types
@@ -128,8 +128,7 @@ Don't get stuck on details. Figure out whether the pipeline works for your needs
 
 **10:50–11:55**
 
-1. The pytask run has written the cleaned modules, the metadata catalogue, and
-   `gettsim_inputs` to `bld/`.
+1. The pytask run has written the cleaned modules and the metadata catalogue to `bld/`.
 1. Find the SOEP variables you need using the metadata catalogue and
    run `create_final_dataset`.
 1. Build a mapping table from the GETTSIM inputs you need to the data (`tree`, `dict` or
