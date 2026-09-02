@@ -133,8 +133,6 @@ persona.upsert_input_data(
 `gettsim-personas` scales all other inputs to match your upserted input data.
 
 ---
-layout: default
----
 
 # Task
 
@@ -146,3 +144,20 @@ layout: default
 4. Choose the dimension your reform actually varies along — earnings is the default,
    but rent, age, or pension income may be the right one.
 5. Run the grid under both environments. Plot them together.
+
+---
+
+# Before the Break
+
+Start this now, then start with your persona work — it runs in the background:
+
+```console
+$ pixi run pytask -c soep-preparation/pyproject.toml
+```
+
+From the repo root, and with the `-c` flag — without it, nothing gets built.
+
+- It needs the raw SOEP `.dta` files flat in `soep-preparation/data/V41/`.
+- It writes to `soep-preparation/bld/`, which Friday's 10:50 session needs.
+- It takes a while — that is why it runs while you work and through the break.
+- If it errors, appoach me or Hans-Martin.

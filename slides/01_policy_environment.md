@@ -60,13 +60,30 @@ happens.
 
 # The Policy Environment Is a Tree
 
-The policy environment is an ordinary nested dictionary of python objects:
+An ordinary nested dictionary of python objects:
 
-- Each object belongs to a **namespace**
-- You can add new paths to this tree, or change existing tree objects
+```text
+{
+    ...
+    "bürgergeld": {
+        ...
+        "regelbedarf_m":                    PolicyFunction
+        "parameter_anrechnungsfreies_einkommen_ohne_kinder_in_bg":
+                                            PiecewisePolynomialParam
+        "p_id_einstandspartner":            PolicyInput
+    },
+    "kindergeld": {
+        ...
+        "satz_m":                           ScalarParam
+        "betrag_m":                         PolicyFunction
+    },
+}
+```
 
-You can see how to manipulate the policy environment in the tutorial (How to Guides ->
-Taxes & Transfers Objects and Modifications of the Policy Environment)
+- Each object is accessible via a path (e.g. `("bürgergeld", "regelbedarf_m")`). You can
+  edit what is behind each path or add new paths
+- How to do that: GETTSIM documentation → How to Guides → Taxes & Transfers Objects and
+  Modifications of the Policy Environment
 
 
 ---

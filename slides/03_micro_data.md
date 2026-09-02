@@ -99,20 +99,19 @@ responses are sensible, etc) are still yours to make.
 
 # The GETTSIM Mapping and Reference Periods
 
-- How to obtain the GETTSIM mapping and the reference codes...
+```python
+from soep_preparation.config import METADATA
+from soep_preparation.gettsim_inputs.mapping import GAP_NOTES, get_soep_to_gettsim
 
+mapping = get_soep_to_gettsim("2023-07-01")   # qname -> SOEP variable, or None
+mapping["geburtsjahr"]                        # 'birth_year'
 
+METADATA["gesetzliche_rente_y"]["reference"]  # 'previous_year'
+```
 
---- 
-
-# Workflow
-
-1. Place your data in `soep-preparation/data/V41`.
-1. In your terminal run `pixi run pytask` to clean the data.
-...
-...
-1. Use sensible defaults for the required inputs that are not in the SOEP.
-
+The reference period (i.e., `current`, `previous_year`, `previous_month` and
+`time_invariant`) lives in the metadata. See the recipe in the soep-preparation docs
+(Naming conventions → Reference period).
 
 ---
 
@@ -129,10 +128,13 @@ Don't get stuck on details. Figure out whether the pipeline works for your needs
 
 **10:50–11:55**
 
-1. Open `notebooks/03_micro_data.ipynb`.
-1. Paste in your reform.
-1. Find the SOEP data you need to compute your targets. Build a mapper from the SOEP
-   names to the GETTSIM paths.
-1. Invent sensible defaults for the other inputs.
-1. Run GETTSIM using the status quo and reform environment.
+1. The pytask run has written the cleaned modules, the metadata catalogue, and
+   `gettsim_inputs` to `bld/`.
+1. Find the SOEP variables you need using the metadata catalogue and
+   run `create_final_dataset`.
+1. Build a mapping table from the GETTSIM inputs you need to the data (`tree`, `dict` or
+   `df_and_mapper`).
+1. Fill the inputs you don't have in the SOEP with sensible defaults.
+1. Drop households with any unobserved value.
+1. Run both environments.
 
