@@ -106,9 +106,24 @@ Pick your favorite implementation and see how it affects income taxes.
 # Matchmaking
 
 **Requirement**: At least one person with a GETTSIM installation and SOEP access
-
 **Group Formation**: Tell the audience what you want to work on, then people can
 self-select
+
+---
+
+# Use all the help you can get
+
+Just a few months ago, this roundtrip would have taken days for newbies. 
+
+Use all the help you can get:
+
+    - Your group members
+    - Your favorite AI
+    - The GETTSIM documentation
+    - The example notebook
+    - Hans-Martin and me
+
+It's finish that you finish somewhat on time so that we can continue. Don't overengineer.
 
 ---
 layout: center
