@@ -35,3 +35,20 @@ jupyter = { cmd = "jupyter lab", description = "Open the workshop notebooks." }
 # the check output. Drop the flag if you need to see warnings.
 verify = { cmd = "python -W ignore scripts/verify_setup.py", description = "Check that your setup works." }
 test-notebooks = { cmd = "pytest --nbmake notebooks/01_policy_environment.ipynb notebooks/02_personas.ipynb", description = "Execute notebooks 01 and 02 and fail on any error." }
+
+# The presentations. Node lives in its own feature so that the environment
+# participants installed against is not re-solved by adding it.
+[tool.pixi.feature.slides.dependencies]
+nodejs = "24.*"
+
+[tool.pixi.feature.slides.tasks]
+slides-install = { cmd = "npm install --no-audit --no-fund", cwd = "slides", description = "Install the Slidev toolchain (once)." }
+view-pres = { cmd = "npx slidev {{ deck }}*.md", cwd = "slides", args = [
+  { arg = "deck", default = "00" },
+], depends-on = [ "slides-install" ], description = "Present a deck: pixi run view-pres 01" }
+build-pres = { cmd = "npx slidev export {{ deck }}*.md", cwd = "slides", args = [
+  { arg = "deck", default = "00" },
+], depends-on = [ "slides-install" ], description = "Export a deck to PDF: pixi run build-pres 01" }
+
+[tool.pixi.environments]
+slides = { features = [ "slides" ], no-default-feature = true }

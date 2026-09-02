@@ -15,17 +15,17 @@ on the second slide of each stage deck with the current stage lit.
 
 ## Running
 
-The toolchain is deliberately **outside pixi**: adding `nodejs` would re-solve
-`pixi.lock`, which participants have already installed against.
-
 ```console
-$ cd slides
-$ npm install
-$ npm run 00      # or 01, 02, 03 — each on its own port
+$ pixi run view-pres 01     # present; the argument is a filename prefix
+$ pixi run build-pres 01    # export to slides/01_policy_environment-export.pdf
+$ pixi run view-pres        # no argument: the format deck
 ```
 
-Export a PDF:
+Both depend on `slides-install`, which runs `npm install` in this directory the first
+time and is a no-op afterwards.
 
-```console
-$ npx slidev export 00_format.md --output 00_format.pdf
-```
+Node lives in its own pixi feature (`[tool.pixi.feature.slides]`, environment `slides`)
+rather than in the default dependencies. Adding it to the default environment would
+re-solve `pixi.lock` for the environment participants already installed against; this
+way their `pixi install` is untouched and the lock only gains an environment they never
+build.

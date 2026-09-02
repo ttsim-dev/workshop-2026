@@ -7,3 +7,4 @@ __pycache__/
 soep-preparation/data/V41/
 node_modules/
 slides/*-export/
+slides/*-export.pdf
