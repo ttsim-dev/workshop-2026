@@ -163,7 +163,7 @@ the family?
 
 <br/>
 
-Full brief on the table. Pointers, not recipes — the scoping is part of the work.
+Pointers, not recipes — the scoping is part of the work.
 
 ---
 layout: center
