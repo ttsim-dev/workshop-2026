@@ -60,6 +60,5 @@ your working tree: read it, grep it, change it.
 ```
 notebooks/     the three sessions
 slides/        the four presentations (Slidev; see slides/README.md)
-src/           workshop_soep.py — assembles SOEP into GETTSIM inputs
 scripts/       setup verification
 ```

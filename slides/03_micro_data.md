@@ -134,17 +134,63 @@ Use it to discover which SOEP variable approximates which qname. Then decide, pe
 
 ---
 
-# The Gap
+# Ask GETTSIM What It Needs
 
-Some GETTSIM inputs have no SOEP source at all. The mapping report lists them.
+Don't guess the input list, and don't read it off the mapping report — that report is
+scoped to `soep-preparation`'s ambitions, not to *your* targets. Request it:
+
+```python
+main(
+    main_target=MainTarget.templates.input_data_dtypes.tree,
+    tt_targets=TTTargets.tree(TARGETS),
+    policy_date_str=POLICY_DATE,
+)
+```
 
 <br/>
 
-`src/workshop_soep.py` closes the gap with two explicit trees:
+Hand it a node you already know the value of, and GETTSIM drops that node's **entire
+upstream subtree** from the list:
 
-- **`from_data`** — mapped straight through, or derived from SOEP variables the
-  pipeline cleans but does not map
-- **`ASSUMED`** — a constant, with its justification, for everything SOEP does not observe
+```python
+input_data=InputData.tree(
+    {"sozialversicherung": {"rente": {"altersrente": {"betrag_m": ...}}}}
+)
+```
+
+<br/>
+
+<div class="highlight">
+
+Altersrente, Erwerbsminderungsrente, Arbeitslosengeld, Elterngeld, Unterhaltsvorschuss
+— five overrides, and the list goes from **83 to 53** inputs.
+
+Without them you owe GETTSIM a contribution history and an Elterngeld biography per
+person. SOEP carries neither.
+
+</div>
+
+---
+
+# The Gap
+
+Some GETTSIM inputs have no SOEP source at all.
+
+<br/>
+
+You close it with **one mapper**. Every leaf is either a column of your DataFrame or a
+constant — mapped and assumed sit side by side, in one tree:
+
+```python
+MAPPER = {
+    "alter": "age",                                  # a column
+    "einnahmen": {"bruttolohn_m": "bruttolohn_m"},   # a column
+    "vermögen": 0.0,                                 # wealth unsurveyed since 2017
+    "wohngeld": {"mietstufe_hh": 3},                 # no Gemeindekennziffer in SOEP
+}
+
+main(input_data=InputData.df_and_mapper(df=soep, mapper=MAPPER), ...)
+```
 
 <br/>
 
@@ -155,7 +201,8 @@ zero-filled — an unobserved rent would make a household look rent-free.
 
 <div class="text-gray-500">
 
-Nothing is hidden. `ws.assumptions_table()` prints every assumption and why.
+Nothing is hidden: every constant carries its justification as a comment, next to the
+columns it sits among.
 
 </div>
 
@@ -170,10 +217,13 @@ The pipeline is real. The reform is real. The households are real.
 
 <br/>
 
-The **numbers are not results** — they rest on one year's cross-section, an imputed
-wealth vector, a column of assumed constants, and a complete-case sample.
+What comes out is **GETTSIM output on real households, not results**. It rests on one
+year's cross-section, a column of assumed constants, a complete-case sample — and **no
+asset test at all**: SOEP surveys wealth only in 2002, 2007, 2012 and 2017, so
+`vermögen` is zero for everyone, which over-states entitlement.
 
-Your own data cleaning is where that gets fixed, and it is most of the work.
+Your own data cleaning is where that gets fixed, and it is most of the work. The
+analysis on top of it is yours.
 
 <br/>
 
@@ -189,18 +239,19 @@ layout: default
 
 1. Open `notebooks/03_micro_data.ipynb`. One machine per group — the one with SOEP.
 2. Paste in your reform, or leave the demo reform in place.
-3. Which inputs does *your* reform touch? Mapped, derived in `workshop_soep`, or
-   `ASSUMED`? Print the mapping report and find out.
+3. Which inputs does *your* reform touch? Mapped column or assumed constant? Read the
+   mapper and find out.
 4. For anything assumed: decide what you would rather assume, and change it.
-5. Run both environments over the sample.
-6. Two numbers worth having: the **fiscal cost**, and **who gains**.
+5. Run both environments over the sample and read the two result frames.
 
 <br/>
 
 <div class="text-gray-500">
 
 Watch the aggregation levels. A household can hold more than one Bedarfsgemeinschaft,
-and summing group values across people double-counts. The notebook shows the fix.
+and a `_bg` value is repeated on every one of its members — so summing across people
+double-counts. The notebook stops at GETTSIM's output and points at the trap; the
+weights, the sample and the aggregation are yours to choose.
 
 </div>
 
