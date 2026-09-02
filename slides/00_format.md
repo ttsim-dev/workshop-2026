@@ -18,8 +18,6 @@ defaults:
 
 ### GETTSIM Workshop 2026 · Bonn
 
-Marvin Immesberger
-
 ---
 
 # The Next Two Days
@@ -28,22 +26,18 @@ You work **in a group**, on **one policy reform you care about**.
 
 <br/>
 
-Not exercises. A reform, taken once around the ecosystem:
+The reform is taken once around the ecosystem:
 
 - **Thursday afternoon** — find it in the law, then change the law
 
 - **Friday morning** — see what it does to a household
 
-- **Friday late morning** — see what it does to the population
+- **Friday late morning** — see what how it interacts with data from the SOEP
 
 <br/>
 
-<div class="text-gray-500">
-
-Nobody presents anything. The closing session is your feedback on GETTSIM,
-not your results.
-
-</div>
+On Friday we are interested in your experiences: What worked well, what didn't? What do
+you need to make it work better?
 
 ---
 
@@ -71,99 +65,50 @@ not your results.
 
 <br/>
 
-Each stage: a short introduction from us, then you work.
-
-Each stage has its own notebook, and each notebook runs on its own.
+We will give you example code for each stage. Feel free to use it, or not.
 
 ---
 
 # One Reform, Three Stages
 
-**Stage 1.** Find your topic in GETTSIM's implementation of current law. Read the
-parameters. Get one number out. Then change it, and get a different number.
+**Stage 1.** Find your topic in GETTSIM's implementation of current law. Make sure the
+current status quo looks right. Then implement the reform via a custom policy
+environment.
 
-**Stage 2.** Put your reform on a *Musterhaushalt* and sweep a dimension — earnings,
-rent, pension income. Watch the budget constraint move, and look for the kinks.
+**Stage 2.** Put your reform on a (range of) **Musterhaushalte** and vary a dimension —
+earnings, rent, pension income. How does your reform change household's buget
+constraint?
 
-**Stage 3.** Take the same reform to SOEP. Who gains, who loses, what does it cost.
-
-<br/>
-
-<div class="text-gray-500">
-
-The point is the trip, not the destination. A reform that only gets through Stage 1
-is a fine outcome.
-
-</div>
-
----
-
-# Forming Groups
-
-**Three to four people.** Fewer than three is lonely, more than four means someone
-is watching.
-
-<br/>
-
-**Now:** if you have a reform you actually care about — raise your hand and say it in
-one sentence. I write it on the wall.
-
-**Then:** everyone walks to the topic they want.
-
-<br/>
-
-<div class="text-gray-500">
-
-Mixed groups are better than homogeneous ones. If you have never used GETTSIM,
-do not form a group of people who have never used GETTSIM.
-
-</div>
-
----
-
-# One Thing to Sort Out Now
-
-Friday 10:50 runs on **SOEP-Core v41**, on your own machine, under your own licence.
-
-<br/>
-
-**Hands up: who has SOEP v41 and a working `pixi run verify`?**
-
-<br/>
-
-Every group needs **at least one** of those hands. Spread out.
-
-<br/>
-
-<div class="text-gray-500">
-
-Nothing before Friday 10:50 needs SOEP. If your setup is broken, the setup desk is
-open through lunch.
-
-</div>
+**Stage 3.** Take the same reform to SOEP. Who gains, who loses, what does it cost?
 
 ---
 
 # If You Have No Topic
 
+Some suggestions:
+
 <div class="briefs">
 
-**1 · Grundsicherung im Alter after the Alterssicherungskommission**
-What do the recommendations to the BMAS actually cost, and who gains?
+**Grundsicherung im Alter after the Alterssicherungskommission**
+Freibetrag on statutory pensions for everyone. 
 
-**2 · A capital pension and the Nettoersatzrate**
-If a euro of retirement income came from a funded pension instead of the public one,
-what happens to the net replacement rate?
+**A capital pension and the Nettoersatzrate**
+How does the planned gesetzliche Kapitalrente affect the net replacement rates of poor
+and rich retirees?
 
-**3 · Familiensplitting instead of Ehegattensplitting**
-Germany splits taxable income between spouses. What changes if it is split across
-the family?
+**Familiensplitting instead of Ehegattensplitting**
+Pick your favorite implementation and see how it affects income taxes.
 
 </div>
 
-<br/>
+---
 
-Pointers, not recipes — the scoping is part of the work.
+# Matchmaking
+
+**Requirement**: At least one person with a GETTSIM installation and SOEP access
+
+**Group Formation**: Tell the audience what you want to work on, then people can
+self-select
 
 ---
 layout: center
@@ -172,5 +117,5 @@ class: text-center
 
 # Raise Your Hand
 
-One sentence. What would you change?
+Which reform do you want to work on?
 
