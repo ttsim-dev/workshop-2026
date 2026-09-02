@@ -272,12 +272,51 @@ def _household_wealth() -> pd.Series:
     )
 
 
+#: Inputs a household must actually have for its result to mean anything. A missing
+#: value reaching GETTSIM is indistinguishable from a legitimate zero: an unobserved
+#: rent makes a household look rent-free, so ineligible for Wohngeld and lower in its
+#: SGB II Bedarf. We drop the household instead. Everything else is filled in
+#: `from_data`, with the reading stated where the fill happens.
+#:
+#: The income variables are only required of people old enough to be interviewed —
+#: SOEP does not ask under-16s, so their missing income is an absence, not a gap.
+_MUST_BE_OBSERVED = (
+    "wohnen__bruttokaltmiete_m_hh",
+    "wohnen__heizkosten_m_hh",
+    "wohnen__wohnfläche_hh",
+    "rented_or_owned",
+)
+_MUST_BE_OBSERVED_IF_INTERVIEWED = (
+    "geburtsjahr",
+    "einnahmen__bruttolohn_m",
+    "einkommensteuer__einkünfte__aus_selbstständiger_arbeit__betrag_y",
+)
+_INTERVIEW_AGE = 16
+
+
+def _incomplete_households(df: pd.DataFrame) -> set[int]:
+    """Households with an unobserved value in any input that has no stated reading."""
+    interviewed = (pd.to_numeric(df["age"], errors="coerce") >= _INTERVIEW_AGE).fillna(
+        True
+    )
+    incomplete: set[int] = set()
+    for column in _MUST_BE_OBSERVED:
+        incomplete |= set(df.loc[df[column].isna(), "hh_id"])
+    for column in _MUST_BE_OBSERVED_IF_INTERVIEWED:
+        incomplete |= set(df.loc[df[column].isna() & interviewed, "hh_id"])
+    return incomplete
+
+
 def load_soep(survey_year: int = SURVEY_YEAR) -> pd.DataFrame:
     """Load one survey year of pipeline output plus the extra SOEP variables.
 
     Keeps only people with a valid interview in `survey_year`. Without this the frame
     carries every person ever observed, whose inputs are then silently filled with
     zeros — which makes them look poor rather than absent.
+
+    Then drops households with an unobserved value in any input that has no stated
+    reading. That is a complete-case sample and not a random one; this is an example,
+    not a research pipeline, and your own cleaning is where you fix it.
     """
     gettsim_inputs = pd.read_feather(BLD / "gettsim_inputs" / "gettsim_inputs.arrow")
     gettsim_inputs = gettsim_inputs[gettsim_inputs["survey_year"] == survey_year]
@@ -309,7 +348,8 @@ def load_soep(survey_year: int = SURVEY_YEAR) -> pd.DataFrame:
     merged["haushaltsvermögen"] = (
         merged["hh_id"].map(_household_wealth()).astype("float64").fillna(0.0)
     )
-    return merged
+    incomplete = _incomplete_households(merged)
+    return merged[~merged["hh_id"].isin(incomplete)].reset_index(drop=True)
 
 
 def wealth_coverage(df: pd.DataFrame) -> pd.Series:

@@ -1,0 +1,175 @@
+/* Headings */
+h1, h2, h3, h4, h5 {
+  font-family: 'Noto Sans';
+  line-height: 2 !important;
+}
+h1 {
+  font-size: 2.7rem !important;
+  font-weight: 600 !important;
+}
+h2 {
+  font-size: 2.7rem !important;
+  font-weight: 600 !important;
+}
+h3 {
+  font-size: 2.025rem !important;
+  font-weight: 600 !important;
+}
+h4 {
+  font-size: 2.025rem !important;
+  font-weight: 400 !important;
+}
+h5 {
+  font-size: 1.35rem !important;
+  font-weight: 600 !important;
+}
+/* Text and list items */
+p, li {
+  font-family: 'Noto Sans';
+  font-weight: 400;
+  font-size: 1.35rem !important;
+  line-height: 1.25 !important;
+}
+li {
+  margin-bottom: .35rem !important;
+}
+code {
+  font-size: 1.0rem !important;
+}
+
+.slidev-code code {
+  font-size: 0.8rem !important;
+}
+
+table {
+  margin: 0;
+  font-family: "Helvetica", "Helvetica", sans-serif;
+  border-collapse: collapse;
+  border: none;
+  font-size: 80%;
+}
+
+table caption {
+  caption-side: bottom;
+}
+
+table td {
+  padding: 0.25em !important;
+  padding-left: 1em !important;
+  padding-right: 1em !important;
+}
+
+table th {
+  font-weight: bold !important;
+  text-align: right !important;
+  padding: 0.25em !important;
+  padding-left: 1em !important;
+  padding-right: 1em !important;
+}
+
+table code {
+  font-size: 1rem !important;
+  background: transparent !important;
+  padding-left: 0em !important;
+  padding-right: 0em !important;
+}
+
+
+html.dark {
+  /* Darkmode Tables */
+  table {
+    color: white;
+  }
+  table thead {
+    background-color: #3d3d3d;
+  }
+  table tbody tr:nth-child(even) {
+    background-color: #3d3d3d;
+  }
+  table tbody tr:nth-child(odd) {
+    background-color: #565656;
+  }
+
+}
+
+html:not(.dark) {
+  /* Lightmode Tables */
+  table {
+    color: #5b5b5b;
+  }
+  table thead {
+    background-color: white;
+  }
+  table tbody tr:nth-child(even) {
+    background-color: white;
+  }
+  table tbody tr:nth-child(odd) {
+    background-color: white;
+  }
+
+  /* Lightmode Code blocks */
+  .slidev-code {
+    background: white;
+  }
+
+  .slidev-code code {
+    font-weight: normal !important;
+  }
+
+  code {
+    font-weight: bold !important;
+    background: white !important;
+    color: #0065bd !important;
+  }
+}
+
+/* ---- Workshop 2026: the ecosystem pipeline, shared by all four decks ---- */
+.pipeline {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0.75rem;
+  margin: 1.5rem 0 2rem 0;
+}
+.pipeline .stage {
+  text-align: center;
+  opacity: 0.3;
+}
+.pipeline .stage.on {
+  opacity: 1;
+}
+.pipeline .box {
+  border: 2px solid #1f4e79;
+  border-radius: 6px;
+  padding: 0.55rem 1rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 1.1rem !important;
+  font-weight: 600;
+  color: #1f4e79;
+  white-space: nowrap;
+}
+.pipeline .what {
+  font-size: 1.0rem !important;
+  margin-top: 0.35rem;
+  line-height: 1.2 !important;
+}
+.pipeline .when {
+  font-size: 0.8rem !important;
+  color: #888;
+  margin-top: 0.1rem;
+  line-height: 1.2 !important;
+}
+.pipeline .arrow {
+  font-size: 1.6rem !important;
+  color: #1f4e79;
+  padding-top: 0.5rem;
+}
+.briefs p {
+  margin-bottom: 0.9rem !important;
+}
+.caution,
+.highlight {
+  border-left: 4px solid #1f4e79;
+  padding: 0.4rem 0 0.4rem 1rem;
+  margin-top: 0.5rem;
+}

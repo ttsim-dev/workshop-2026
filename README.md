@@ -75,9 +75,10 @@ Friday morning only. Skip it if you are not bringing SOEP data.
 
 ```
 notebooks/     the three sessions
+slides/        the four presentations (Slidev; see slides/README.md)
 briefs/        three example topics, for groups without one of their own
 src/           workshop_soep.py — assembles SOEP into GETTSIM inputs
-scripts/       setup verification, notebook builders
+scripts/       setup verification
 ```
 
 ## Checks
