@@ -84,6 +84,18 @@ Taxes & Transfers Objects and Modifications of the Policy Environment)
    the modified policy environment.
 
 ---
+
+# Tip: Ask GETTSIM what input data you need
+
+```python
+main(
+    main_target=MainTarget.templates.input_data_dtypes.tree,
+    tt_targets=TTTargets.tree(TARGETS),
+    policy_date_str=POLICY_DATE,
+)
+```
+
+---
 layout: default
 ---
 
