@@ -1,0 +1,17 @@
+{
+  "name": "gettsim-workshop-2026-slides",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "00": "slidev 00_format.md --port 3030",
+    "01": "slidev 01_policy_environment.md --port 3031",
+    "02": "slidev 02_personas.md --port 3032",
+    "03": "slidev 03_micro_data.md --port 3033"
+  },
+  "dependencies": {
+    "@slidev/cli": "*",
+    "@slidev/theme-default": "*",
+    "playwright-chromium": "*",
+    "slidev-theme-academic": "^1.3.0"
+  }
+}

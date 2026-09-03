@@ -1,0 +1,19 @@
+---
+name: main
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+jobs:
+  notebooks:
+    name: Execute notebooks 01 and 02
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          submodules: recursive
+      - uses: prefix-dev/setup-pixi@v0.9.0
+        with:
+          cache: true
+      - run: pixi run test-notebooks

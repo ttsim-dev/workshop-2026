@@ -5,3 +5,7 @@ __pycache__/
 .ipynb_checkpoints/
 .pytest_cache/
 soep-preparation/data/V41/
+node_modules/
+slides/*-export/
+slides/*-export.pdf
+.DS_Store
