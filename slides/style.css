@@ -173,3 +173,79 @@ html:not(.dark) {
   padding: 0.4rem 0 0.4rem 1rem;
   margin-top: 0.5rem;
 }
+
+/* ---- Workshop 2026: timeline and interface-DAG spine (hmg deck) ---- */
+.timeline {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  column-gap: 1.25rem;
+  row-gap: 0.45rem;
+  margin-top: 0.75rem;
+}
+.timeline .when {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 1.0rem !important;
+  color: #1f4e79;
+  font-weight: 600;
+  white-space: nowrap;
+  padding-top: 0.15rem;
+}
+.timeline .what {
+  font-size: 1.15rem !important;
+  line-height: 1.25 !important;
+}
+.timeline .gap {
+  grid-column: 1 / -1;
+  text-align: center;
+  font-size: 1.15rem !important;
+  color: #a33;
+  font-style: italic;
+  padding: 0.35rem 0;
+}
+
+.spine {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  margin-top: 0.5rem;
+}
+.spine .step {
+  display: grid;
+  grid-template-columns: 21rem 1fr;
+  column-gap: 1.25rem;
+  align-items: baseline;
+}
+.spine .node {
+  border: 2px solid #1f4e79;
+  border-radius: 6px;
+  padding: 0.25rem 0.6rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.95rem !important;
+  font-weight: 600;
+  color: #1f4e79;
+  white-space: nowrap;
+}
+.spine .node.side {
+  border-style: dashed;
+  color: #6b8fb3;
+  border-color: #6b8fb3;
+  font-weight: 400;
+}
+.spine .gloss {
+  font-size: 1.05rem !important;
+  line-height: 1.25 !important;
+}
+.spine .down {
+  color: #1f4e79;
+  font-size: 1.1rem !important;
+  padding-left: 1.6rem;
+  line-height: 1 !important;
+  margin: 0 !important;
+}
+
+.dagframe {
+  width: 100%;
+  height: 290px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}

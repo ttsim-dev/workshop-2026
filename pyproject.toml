@@ -35,6 +35,7 @@ jupyter = { cmd = "jupyter lab", description = "Open the workshop notebooks." }
 # the check output. Drop the flag if you need to see warnings.
 verify = { cmd = "python -W ignore scripts/verify_setup.py", description = "Check that your setup works." }
 test-notebooks = { cmd = "pytest --nbmake notebooks/01_policy_environment.ipynb notebooks/02_personas.ipynb", description = "Execute notebooks 01 and 02 and fail on any error." }
+slides-dag = { cmd = "python -W ignore slides/make_interface_dag.py", description = "Regenerate the interactive interface DAG embedded in the slides." }
 
 # The presentations. Node lives in its own feature so that the environment
 # participants installed against is not re-solved by adding it.
