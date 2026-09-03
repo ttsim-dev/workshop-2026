@@ -6,7 +6,8 @@
     "00": "slidev 00_format.md --port 3030",
     "01": "slidev 01_policy_environment.md --port 3031",
     "02": "slidev 02_personas.md --port 3032",
-    "03": "slidev 03_micro_data.md --port 3033"
+    "03": "slidev 03_micro_data.md --port 3033",
+    "hmg": "slidev hmg.md --port 3034"
   },
   "dependencies": {
     "@slidev/cli": "*",
