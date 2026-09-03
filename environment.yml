@@ -1,0 +1,48 @@
+# Conda equivalent of the pixi workspace defined in pyproject.toml.
+#
+# For participants who prefer conda/mamba over pixi. It reproduces the
+# `default` pixi environment (not the separate `slides` environment, which
+# only adds Node.js for Slidev).
+#
+# Prerequisite: clone the repository *including* its submodules, because the
+# four project packages are installed from the local checkouts:
+#
+#     git clone --recurse-submodules https://github.com/<...>/gettsim-workshop-2026.git
+#     # or, in an existing clone:
+#     git submodule update --init --recursive
+#
+# Then, from the repository root:
+#
+#     conda env create -f environment.yml     # or: mamba env create -f environment.yml
+#     conda activate gettsim-workshop-2026
+#     python -W ignore scripts/verify_setup.py
+#
+# Start the notebooks with `jupyter lab`.
+
+name: gettsim-workshop-2026
+
+channels:
+  - conda-forge
+
+dependencies:
+  - python=3.14.*
+  - deepdiff
+  - scikit-learn>=1.9.0,<2
+  - pyarrow>=21
+  - ipykernel
+  - jupyterlab
+  - matplotlib
+  - plotly
+  - pygraphviz
+  # Needed by conda to hand the pip section below a working installer.
+  - pip
+  - pip:
+      - jaxtyping
+      - nbmake
+      - pytest
+      - dags @ git+https://github.com/OpenSourceEconomics/dags.git@main
+      # The workshop packages, installed editable from the submodules.
+      - --editable ./ttsim
+      - --editable ./gettsim
+      - --editable ./gettsim-personas
+      - --editable ./soep-preparation
