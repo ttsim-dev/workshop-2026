@@ -9,6 +9,7 @@ drawings:
   persist: false
 transition: fade
 title: Stage 1 — The Policy Environment
+exportFilename: '01_policy_environment'
 mdc: true
 defaults:
   layout: center

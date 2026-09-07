@@ -9,6 +9,7 @@ drawings:
   persist: false
 transition: fade
 title: Stage 2 — Musterhaushalte
+exportFilename: '02_personas'
 mdc: true
 defaults:
   layout: center

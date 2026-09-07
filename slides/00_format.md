@@ -9,6 +9,7 @@ drawings:
   persist: false
 transition: fade
 title: Workshop Format and Group Formation
+exportFilename: '00_format'
 mdc: true
 defaults:
   layout: center

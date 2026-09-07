@@ -9,6 +9,7 @@ drawings:
   persist: false
 transition: fade
 title: Stage 3 — From Raw SOEP to GETTSIM Inputs
+exportFilename: '03_micro_data'
 mdc: true
 defaults:
   layout: center
