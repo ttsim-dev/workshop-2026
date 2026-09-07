@@ -10,11 +10,15 @@ Five Slidev decks, one per presentation slot.
 | `02_personas.md` | Fri 09:00 · Introduction to Stage 2 |
 | `03_micro_data.md` | Fri 10:35 · Introduction to Stage 3 |
 
+A rendered `<prefix>.pdf` sits next to each deck and is committed, so the slides
+can be read without installing the Slidev toolchain. Rebuild one after editing its
+source with `pixi run build-pres <prefix>`.
+
 ## Running
 
 ```console
 $ pixi run view-pres 01     # present; the argument is a filename prefix
-$ pixi run build-pres 01    # export to slides/01_policy_environment-export.pdf
+$ pixi run build-pres 01    # export to slides/01_policy_environment.pdf
 ```
 
 Both depend on `slides-install`, which runs `npm install` in this directory the first

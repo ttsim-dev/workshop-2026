@@ -9,6 +9,7 @@ drawings:
   persist: false
 transition: fade
 title: Two Years
+exportFilename: 'hmg'
 mdc: true
 defaults:
   layout: center

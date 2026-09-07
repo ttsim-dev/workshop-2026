@@ -6,6 +6,5 @@ __pycache__/
 .pytest_cache/
 soep-preparation/data/V41/
 node_modules/
-slides/*-export/
-slides/*-export.pdf
+# slides/*.pdf is tracked: the rendered decks are committed for participants.
 .DS_Store
